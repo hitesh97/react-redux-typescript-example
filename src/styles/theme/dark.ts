@@ -2,8 +2,9 @@ import { lighten } from 'polished'
 import { Theme } from '../../utils/styled'
 import brandColors from '../colors/brandColors'
 
-const lightTheme: Theme = {
+const DarkTheme: Theme = {
   colors: {
+    footerBackground: brandColors.red,
     background: brandColors.gray75,
     body: brandColors.gray10,
     headings: brandColors.gray5,
@@ -51,4 +52,4 @@ const lightTheme: Theme = {
   }
 }
 
-export default lightTheme
+export default DarkTheme

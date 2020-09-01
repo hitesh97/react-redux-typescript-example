@@ -4,6 +4,7 @@ import brandColors from '../colors/brandColors'
 
 const lightTheme: Theme = {
   colors: {
+    footerBackground: brandColors.red,
     background: brandColors.gray5,
     body: brandColors.gray75,
     headings: brandColors.black,

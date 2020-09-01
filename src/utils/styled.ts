@@ -3,6 +3,7 @@ import styled, { CreateStyled } from '@emotion/styled'
 export interface Theme {
   colors: {
     background: string
+    footerBackground: string
     body: string
     headings: string
     borders: string

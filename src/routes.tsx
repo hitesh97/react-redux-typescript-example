@@ -4,6 +4,7 @@ import { Global } from '@emotion/core'
 
 import Root from './components/layout/Root'
 import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
 import IndexPage from './pages/index'
 import HeroesPage from './pages/heroes'
 import TeamsPage from './pages/teams'
@@ -30,6 +31,7 @@ const Routes: React.SFC = () => (
       <Route path="/teams" component={TeamsPage} />
       <Route component={() => <div>Not Found</div>} />
     </Switch>
+    <Footer title="Example App" />
   </Root>
 )
 
