@@ -2,9 +2,9 @@ export async function callApi(method: string, url: string, path: string, data?: 
   const res = await fetch(`${url}/api${path}`, {
     method,
     headers: {
-      Accept: 'application/json'
+      Accept: 'application/json',
     },
-    body: JSON.stringify(data)
-  })
-  return res.json()
+    body: JSON.stringify(data),
+  });
+  return res.json();
 }

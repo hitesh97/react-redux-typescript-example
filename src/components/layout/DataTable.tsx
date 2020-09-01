@@ -1,9 +1,9 @@
-import * as React from 'react'
-import styled from '../../utils/styled'
+import * as React from 'react';
+import styled from '../../utils/styled';
 
 interface DataTableProps {
-  columns: string[]
-  widths?: string[]
+  columns: string[];
+  widths?: string[];
 }
 
 const DataTable: React.SFC<DataTableProps> = ({ children, widths, columns }) => (
@@ -19,9 +19,9 @@ const DataTable: React.SFC<DataTableProps> = ({ children, widths, columns }) => 
     </thead>
     <tbody>{children}</tbody>
   </Wrapper>
-)
+);
 
-export default DataTable
+export default DataTable;
 
 const Wrapper = styled('table')`
   margin-bottom: 0;
@@ -52,4 +52,4 @@ const Wrapper = styled('table')`
       }
     }
   }
-`
+`;

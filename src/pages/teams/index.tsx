@@ -1,51 +1,54 @@
-import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import moment from 'moment'
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
-import styled from '../../utils/styled'
-import Page from '../../components/layout/Page'
-import Container from '../../components/layout/Container'
-import DataTable from '../../components/layout/DataTable'
-import LoadingOverlay from '../../components/data/LoadingOverlay'
-import LoadingOverlayInner from '../../components/data/LoadingOverlayInner'
-import LoadingSpinner from '../../components/data/LoadingSpinner'
+import styled from '../../utils/styled';
+import Page from '../../components/layout/Page';
+import Container from '../../components/layout/Container';
+import DataTable from '../../components/layout/DataTable';
+import LoadingOverlay from '../../components/data/LoadingOverlay';
+import LoadingOverlayInner from '../../components/data/LoadingOverlayInner';
+import LoadingSpinner from '../../components/data/LoadingSpinner';
 
-import { ApplicationState } from '../../store'
-import { Team } from '../../store/teams/types'
-import { fetchRequest } from '../../store/teams/actions'
+import { ApplicationState } from '../../store';
+import { Team } from '../../store/teams/types';
+import { fetchRequest } from '../../store/teams/actions';
 
 // Separate state props + dispatch props to their own interfaces.
 interface PropsFromState {
-  loading: boolean
-  data: Team[]
-  errors?: string
+  loading: boolean;
+  data: Team[];
+  errors?: string;
 }
 
 // We can use `typeof` here to map our dispatch types to the props, like so.
 interface PropsFromDispatch {
-  fetchTeams: typeof fetchRequest
+  fetchTeams: typeof fetchRequest;
 }
 
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = PropsFromState & PropsFromDispatch
+type AllProps = PropsFromState & PropsFromDispatch;
 
 class TeamsIndexPage extends React.Component<AllProps> {
   public componentDidMount() {
-    const { data, fetchTeams } = this.props
+    const { data, fetchTeams } = this.props;
 
     if (data.length === 0) {
-      fetchTeams()
+      fetchTeams();
     }
   }
 
   private renderData() {
-    const { data } = this.props
+    const { data } = this.props;
 
     return (
-      <DataTable columns={['Rank', 'Team', 'Rating', 'Wins / Losses', 'Last Match']} widths={['', 'auto', '', '', '']}>
+      <DataTable
+        columns={['Rank', 'Team', 'Rating', 'Wins / Losses', 'Last Match']}
+        widths={['', 'auto', '', '', '']}
+      >
         {data.slice(0, 20).map((team, i) => {
-          const lastMatch = moment(team.last_match_time * 1000)
+          const lastMatch = moment(team.last_match_time * 1000);
 
           return (
             <tr key={team.team_id}>
@@ -66,14 +69,14 @@ class TeamsIndexPage extends React.Component<AllProps> {
                 </time>
               </td>
             </tr>
-          )
+          );
         })}
       </DataTable>
-    )
+    );
   }
 
   public render() {
-    const { loading } = this.props
+    const { loading } = this.props;
 
     return (
       <Page>
@@ -90,7 +93,7 @@ class TeamsIndexPage extends React.Component<AllProps> {
           </TableWrapper>
         </Container>
       </Page>
-    )
+    );
   }
 }
 
@@ -100,35 +103,35 @@ class TeamsIndexPage extends React.Component<AllProps> {
 const mapStateToProps = ({ teams }: ApplicationState) => ({
   loading: teams.loading,
   errors: teams.errors,
-  data: teams.data
-})
+  data: teams.data,
+});
 
 // mapDispatchToProps is especially useful for constraining our actions to the connected component.
 // You can access these via `this.props`.
 const mapDispatchToProps = {
-  fetchTeams: fetchRequest
-}
+  fetchTeams: fetchRequest,
+};
 
 // Now let's connect our component!
 // With redux v4's improved typings, we can finally omit generics here.
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TeamsIndexPage)
+)(TeamsIndexPage);
 
 const TableWrapper = styled('div')`
   position: relative;
   max-width: ${props => props.theme.widths.md};
   margin: 0 auto;
   min-height: 200px;
-`
+`;
 
 const TeamDetail = styled('td')`
   display: flex;
   flex-direction: row;
   align-items: center;
   min-height: 66px;
-`
+`;
 
 const TeamLogo = styled('div')`
   position: relative;
@@ -141,7 +144,7 @@ const TeamLogo = styled('div')`
     height: 100%;
     object-fit: contain;
   }
-`
+`;
 
 const TeamName = styled('div')`
   flex: 1 1 auto;
@@ -151,4 +154,4 @@ const TeamName = styled('div')`
   a {
     color: ${props => props.theme.colors.brand};
   }
-`
+`;

@@ -1,15 +1,15 @@
-import * as React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import { Global } from '@emotion/core'
+import * as React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { Global } from '@emotion/core';
 
-import Root from './components/layout/Root'
-import Header from './components/layout/Header'
-import Footer from './components/layout/Footer'
-import IndexPage from './pages/index'
-import HeroesPage from './pages/heroes'
-import TeamsPage from './pages/teams'
-import normalize from './styles/normalize'
-import globals from './styles/globals'
+import Root from './components/layout/Root';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import IndexPage from './pages/index';
+import HeroesPage from './pages/heroes';
+import TeamsPage from './pages/teams';
+import normalize from './styles/normalize';
+import globals from './styles/globals';
 
 // If your app is big + you have routes with a lot of components, you should consider
 // code-splitting your routes! If you bundle stuff up with Webpack, I recommend `react-loadable`.
@@ -33,6 +33,6 @@ const Routes: React.SFC = () => (
     </Switch>
     <Footer title="Example App" />
   </Root>
-)
+);
 
-export default Routes
+export default Routes;

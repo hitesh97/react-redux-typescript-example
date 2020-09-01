@@ -1,15 +1,15 @@
-import * as React from 'react'
-import { keyframes } from '@emotion/core'
-import styled from '../../utils/styled'
+import * as React from 'react';
+import { keyframes } from '@emotion/core';
+import styled from '../../utils/styled';
 
 const LoadingSpinner: React.SFC = () => (
   <Spinner>
     <div className="cube1" />
     <div className="cube2" />
   </Spinner>
-)
+);
 
-export default LoadingSpinner
+export default LoadingSpinner;
 
 const CubeMove = keyframes`
   25% {
@@ -28,7 +28,7 @@ const CubeMove = keyframes`
     transform: rotate(-360deg);
     -webkit-transform: rotate(-360deg);
   }
-`
+`;
 
 const Spinner = styled('div')`
   margin: 100px auto;
@@ -53,4 +53,4 @@ const Spinner = styled('div')`
     -webkit-animation-delay: -0.9s;
     animation-delay: -0.9s;
   }
-`
+`;

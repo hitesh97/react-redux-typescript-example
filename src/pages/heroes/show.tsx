@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 
 import {
   HeroInfobox,
@@ -9,68 +9,78 @@ import {
   HeroInfoboxInner,
   HeroInfoboxBlurBackground,
   HeroName,
-  HeroRoles
-} from '../../components/heroes/HeroInfobox'
-import { HeroStats, HeroStatsInner, StatAttribute, Bullet } from '../../components/heroes/HeroStats'
-import { HeroDetails, HeroDetailsColumn, HeroDetailsRow, HeroDetailsAttrName } from '../../components/heroes/HeroDetails'
-import Page from '../../components/layout/Page'
-import Container from '../../components/layout/Container'
+  HeroRoles,
+} from '../../components/heroes/HeroInfobox';
+import {
+  HeroStats,
+  HeroStatsInner,
+  StatAttribute,
+  Bullet,
+} from '../../components/heroes/HeroStats';
+import {
+  HeroDetails,
+  HeroDetailsColumn,
+  HeroDetailsRow,
+  HeroDetailsAttrName,
+} from '../../components/heroes/HeroDetails';
+import Page from '../../components/layout/Page';
+import Container from '../../components/layout/Container';
 
-import { ApplicationState } from '../../store'
-import { Hero } from '../../store/heroes/types'
-import { fetchRequest } from '../../store/heroes/actions'
-import styled from '../../utils/styled'
-import LoadingOverlay from '../../components/data/LoadingOverlay'
-import LoadingOverlayInner from '../../components/data/LoadingOverlayInner'
-import LoadingSpinner from '../../components/data/LoadingSpinner'
+import { ApplicationState } from '../../store';
+import { Hero } from '../../store/heroes/types';
+import { fetchRequest } from '../../store/heroes/actions';
+import styled from '../../utils/styled';
+import LoadingOverlay from '../../components/data/LoadingOverlay';
+import LoadingOverlayInner from '../../components/data/LoadingOverlayInner';
+import LoadingSpinner from '../../components/data/LoadingSpinner';
 
 // Separate state props + dispatch props to their own interfaces.
 interface PropsFromState {
-  loading: boolean
-  data: Hero[]
-  errors?: string
+  loading: boolean;
+  data: Hero[];
+  errors?: string;
 }
 
 // We can use `typeof` here to map our dispatch types to the props, like so.
 interface PropsFromDispatch {
-  fetchHeroes: typeof fetchRequest
+  fetchHeroes: typeof fetchRequest;
 }
 
 interface RouteParams {
-  name: string
+  name: string;
 }
 
 interface State {
-  selected?: Hero
+  selected?: Hero;
 }
 
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = PropsFromState & PropsFromDispatch & RouteComponentProps<RouteParams>
+type AllProps = PropsFromState & PropsFromDispatch & RouteComponentProps<RouteParams>;
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'https://api.opendota.com'
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'https://api.opendota.com';
 
 const Wrapper = styled('div')`
   position: relative;
-`
+`;
 
 class ShowHeroesPage extends React.Component<AllProps, State> {
   constructor(props: AllProps) {
-    super(props)
+    super(props);
 
-    this.state = {}
+    this.state = {};
   }
 
   public componentDidMount() {
-    const { data, fetchHeroes } = this.props
+    const { data, fetchHeroes } = this.props;
 
     if (!data || data.length === 0) {
-      fetchHeroes()
+      fetchHeroes();
     }
   }
 
   public render() {
-    const { data, loading, match } = this.props
-    const selected = data.find(hero => hero.name === match.params.name)
+    const { data, loading, match } = this.props;
+    const selected = data.find(hero => hero.name === match.params.name);
 
     return (
       <Page>
@@ -113,16 +123,20 @@ class ShowHeroesPage extends React.Component<AllProps, State> {
                 <HeroDetails>
                   <HeroDetailsColumn>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Base Attack:</HeroDetailsAttrName> {selected.base_attack_min} - {selected.base_attack_max}
+                      <HeroDetailsAttrName>Base Attack:</HeroDetailsAttrName>{' '}
+                      {selected.base_attack_min} - {selected.base_attack_max}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Attack Range:</HeroDetailsAttrName> {selected.attack_range || '-'}
+                      <HeroDetailsAttrName>Attack Range:</HeroDetailsAttrName>{' '}
+                      {selected.attack_range || '-'}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Attack Speed:</HeroDetailsAttrName> {selected.attack_speed || '-'}
+                      <HeroDetailsAttrName>Attack Speed:</HeroDetailsAttrName>{' '}
+                      {selected.attack_speed || '-'}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Projectile Speed:</HeroDetailsAttrName> {selected.projectile_speed || '-'}
+                      <HeroDetailsAttrName>Projectile Speed:</HeroDetailsAttrName>{' '}
+                      {selected.projectile_speed || '-'}
                     </HeroDetailsRow>
                   </HeroDetailsColumn>
                   <HeroDetailsColumn>
@@ -130,13 +144,15 @@ class ShowHeroesPage extends React.Component<AllProps, State> {
                       <HeroDetailsAttrName>Health:</HeroDetailsAttrName> {selected.base_health || 0}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Health Regen:</HeroDetailsAttrName> {selected.base_health_regen || 0}
+                      <HeroDetailsAttrName>Health Regen:</HeroDetailsAttrName>{' '}
+                      {selected.base_health_regen || 0}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
                       <HeroDetailsAttrName>Mana:</HeroDetailsAttrName> {selected.base_mana || 0}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Mana Regen:</HeroDetailsAttrName> {selected.base_mana_regen || 0}
+                      <HeroDetailsAttrName>Mana Regen:</HeroDetailsAttrName>{' '}
+                      {selected.base_mana_regen || 0}
                     </HeroDetailsRow>
                   </HeroDetailsColumn>
                   <HeroDetailsColumn>
@@ -144,13 +160,16 @@ class ShowHeroesPage extends React.Component<AllProps, State> {
                       <HeroDetailsAttrName>Base Armor:</HeroDetailsAttrName> -
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Magic Resistance:</HeroDetailsAttrName> {selected.base_mr || 0}%
+                      <HeroDetailsAttrName>Magic Resistance:</HeroDetailsAttrName>{' '}
+                      {selected.base_mr || 0}%
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Move Speed:</HeroDetailsAttrName> {selected.move_speed || 0}
+                      <HeroDetailsAttrName>Move Speed:</HeroDetailsAttrName>{' '}
+                      {selected.move_speed || 0}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>Turn Speed:</HeroDetailsAttrName> {selected.turn_rate || 0}
+                      <HeroDetailsAttrName>Turn Speed:</HeroDetailsAttrName>{' '}
+                      {selected.turn_rate || 0}
                     </HeroDetailsRow>
                   </HeroDetailsColumn>
                   <HeroDetailsColumn>
@@ -158,7 +177,8 @@ class ShowHeroesPage extends React.Component<AllProps, State> {
                       <HeroDetailsAttrName>Number of Legs:</HeroDetailsAttrName> {selected.legs}
                     </HeroDetailsRow>
                     <HeroDetailsRow>
-                      <HeroDetailsAttrName>CM Enabled:</HeroDetailsAttrName> {selected.cm_enabled ? 'yes' : 'no'}
+                      <HeroDetailsAttrName>CM Enabled:</HeroDetailsAttrName>{' '}
+                      {selected.cm_enabled ? 'yes' : 'no'}
                     </HeroDetailsRow>
                   </HeroDetailsColumn>
                 </HeroDetails>
@@ -167,7 +187,7 @@ class ShowHeroesPage extends React.Component<AllProps, State> {
           </Wrapper>
         </Container>
       </Page>
-    )
+    );
   }
 }
 
@@ -177,18 +197,18 @@ class ShowHeroesPage extends React.Component<AllProps, State> {
 const mapStateToProps = ({ heroes }: ApplicationState) => ({
   loading: heroes.loading,
   errors: heroes.errors,
-  data: heroes.data
-})
+  data: heroes.data,
+});
 
 // mapDispatchToProps is especially useful for constraining our actions to the connected component.
 // You can access these via `this.props`.
 const mapDispatchToProps = {
-  fetchHeroes: fetchRequest
-}
+  fetchHeroes: fetchRequest,
+};
 
 // Now let's connect our component!
 // With redux v4's improved typings, we can finally omit generics here.
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ShowHeroesPage)
+)(ShowHeroesPage);

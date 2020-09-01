@@ -1,6 +1,6 @@
-import { darken } from 'polished'
+import { darken } from 'polished';
 
-import styled from '../../utils/styled'
+import styled from '../../utils/styled';
 
 export const HeroInfobox = styled('div')`
   position: relative;
@@ -8,7 +8,7 @@ export const HeroInfobox = styled('div')`
   overflow: hidden;
   border-radius: 8px;
   color: ${props => darken(0.25, props.theme.colors.white)};
-`
+`;
 
 export const HeroInfoboxBlurBackground = styled('img')`
   position: absolute;
@@ -21,7 +21,7 @@ export const HeroInfoboxBlurBackground = styled('img')`
   opacity: 0.35;
   background-repeat: no-repeat;
   z-index: 1;
-`
+`;
 
 export const HeroInfoboxInner = styled('div')`
   display: flex;
@@ -35,7 +35,7 @@ export const HeroInfoboxInner = styled('div')`
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
     flex-direction: row;
   }
-`
+`;
 
 export const HeroInfoboxImage = styled('img')`
   display: block;
@@ -49,7 +49,7 @@ export const HeroInfoboxImage = styled('img')`
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.3);
   border-image: initial;
-`
+`;
 
 export const HeroInfoboxHeading = styled('div')`
   flex: 1 1 100%;
@@ -60,13 +60,13 @@ export const HeroInfoboxHeading = styled('div')`
     margin: 0 1.5rem;
     text-align: left;
   }
-`
+`;
 
 export const HeroName = styled('h1')`
   margin: 0;
   color: ${props => props.theme.colors.white};
   font-weight: 500;
-`
+`;
 
 export const HeroRoles = styled('p')`
   margin: 0.5rem 0 0;
@@ -78,4 +78,4 @@ export const HeroRoles = styled('p')`
   & span {
     color: ${props => darken(0.25, props.theme.colors.white)};
   }
-`
+`;

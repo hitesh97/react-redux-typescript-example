@@ -1,5 +1,5 @@
-import { transparentize } from 'polished'
-import styled from '../../utils/styled'
+import { transparentize } from 'polished';
+import styled from '../../utils/styled';
 
 export const HeroDetailsAttrName = styled('span')`
   color: ${props => transparentize(0.25, props.theme.colors.body)};
@@ -7,7 +7,7 @@ export const HeroDetailsAttrName = styled('span')`
   font-size: 12px;
   margin-right: 5px;
   text-transform: uppercase;
-`
+`;
 
 export const HeroDetailsRow = styled('span')`
   display: flex;
@@ -24,18 +24,18 @@ export const HeroDetailsRow = styled('span')`
   &:last-of-type {
     border-bottom: 1px solid ${props => props.theme.colors.borders};
   }
-`
+`;
 
 export const HeroDetailsColumn = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 1 0px;
   padding: 8px;
-`
+`;
 
 export const HeroDetails = styled('div')`
   display: flex;
   margin-top: 10px;
   margin-left: -8px;
   margin-right: -8px;
-`
+`;

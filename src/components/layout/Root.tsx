@@ -1,13 +1,13 @@
-import * as React from 'react'
-import styled from '../../utils/styled'
+import * as React from 'react';
+import styled from '../../utils/styled';
 
 interface RootProps {
-  className?: string
+  className?: string;
 }
 
-const Root: React.SFC<RootProps> = ({ children }) => <Wrapper>{children}</Wrapper>
+const Root: React.SFC<RootProps> = ({ children }) => <Wrapper>{children}</Wrapper>;
 
-export default Root
+export default Root;
 
 const Wrapper = styled('div')`
   display: flex;
@@ -17,4 +17,4 @@ const Wrapper = styled('div')`
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.body};
   font-family: ${props => props.theme.fonts.body};
-`
+`;

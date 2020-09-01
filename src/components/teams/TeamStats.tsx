@@ -1,4 +1,4 @@
-import styled from '../../utils/styled'
+import styled from '../../utils/styled';
 
 export const TeamStats = styled('div')`
   display: block;
@@ -12,11 +12,11 @@ export const TeamStats = styled('div')`
     margin: 0;
     flex: 1 0 340px;
   }
-`
+`;
 
 export const TeamStatsInner = styled('div')`
   display: flex;
-`
+`;
 
 export const StatItem = styled('div')`
   display: flex;
@@ -25,16 +25,16 @@ export const StatItem = styled('div')`
   flex: 1 1 0;
   padding: 0 1rem;
   font-size: 0.8rem;
-`
+`;
 
 export const StatHeading = styled('h4')`
   margin: 0;
   margin-bottom: 0.2rem;
   font-size: 1rem;
-`
+`;
 
 export interface StatNumberProps {
-  attr?: 'win' | 'loss'
+  attr?: 'win' | 'loss';
 }
 
 export const StatNumber = styled('p')<StatNumberProps>`
@@ -42,5 +42,9 @@ export const StatNumber = styled('p')<StatNumberProps>`
   font-size: 1.5rem;
   color: ${props =>
     // eslint-disable-next-line no-nested-ternary
-    props.attr ? (props.attr === 'win' ? props.theme.colors.attrs.agi : props.theme.colors.attrs.str) : undefined};
-`
+    props.attr
+      ? props.attr === 'win'
+        ? props.theme.colors.attrs.agi
+        : props.theme.colors.attrs.str
+      : undefined};
+`;

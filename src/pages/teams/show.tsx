@@ -1,65 +1,75 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
-import styled from '../../utils/styled'
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
+import styled from '../../utils/styled';
 
-import Page from '../../components/layout/Page'
-import Container from '../../components/layout/Container'
-import LoadingOverlay from '../../components/data/LoadingOverlay'
-import LoadingOverlayInner from '../../components/data/LoadingOverlayInner'
-import LoadingSpinner from '../../components/data/LoadingSpinner'
+import Page from '../../components/layout/Page';
+import Container from '../../components/layout/Container';
+import LoadingOverlay from '../../components/data/LoadingOverlay';
+import LoadingOverlayInner from '../../components/data/LoadingOverlayInner';
+import LoadingSpinner from '../../components/data/LoadingSpinner';
 
-import { ApplicationState } from '../../store'
-import { TeamSelectedPayload } from '../../store/teams/types'
-import { selectTeam as selectTeamAction, clearSelected as clearSelectedAction } from '../../store/teams/actions'
-import DataTable from '../../components/layout/DataTable'
+import { ApplicationState } from '../../store';
+import { TeamSelectedPayload } from '../../store/teams/types';
+import {
+  selectTeam as selectTeamAction,
+  clearSelected as clearSelectedAction,
+} from '../../store/teams/actions';
+import DataTable from '../../components/layout/DataTable';
 import {
   TeamInfobox,
   TeamInfoboxBlurBackground,
   TeamInfoboxInner,
   TeamLogo,
   TeamInfoboxHeading,
-  TeamName
-} from '../../components/teams/TeamInfobox'
-import { TeamStats, TeamStatsInner, StatItem, StatHeading, StatNumber } from '../../components/teams/TeamStats'
+  TeamName,
+} from '../../components/teams/TeamInfobox';
+import {
+  TeamStats,
+  TeamStatsInner,
+  StatItem,
+  StatHeading,
+  StatNumber,
+} from '../../components/teams/TeamStats';
 
 // Separate state props + dispatch props to their own interfaces.
 interface PropsFromState {
-  loading: boolean
-  selected?: TeamSelectedPayload
-  errors?: string
+  loading: boolean;
+  selected?: TeamSelectedPayload;
+  errors?: string;
 }
 
 interface PropsFromDispatch {
-  selectTeam: typeof selectTeamAction
-  clearSelected: typeof clearSelectedAction
+  selectTeam: typeof selectTeamAction;
+  clearSelected: typeof clearSelectedAction;
 }
 
 interface RouteParams {
-  id: string
+  id: string;
 }
 
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = PropsFromState & PropsFromDispatch & RouteComponentProps<RouteParams>
+type AllProps = PropsFromState & PropsFromDispatch & RouteComponentProps<RouteParams>;
 
-const formatPlayerIcon = (accountId: number) => `https://www.opendota.com/assets/images/dota2/players/${accountId}.png`
+const formatPlayerIcon = (accountId: number) =>
+  `https://www.opendota.com/assets/images/dota2/players/${accountId}.png`;
 
 class ShowTeamsPage extends React.Component<AllProps> {
   public componentDidMount() {
-    const { match, selectTeam } = this.props
+    const { match, selectTeam } = this.props;
 
-    selectTeam(match.params.id)
+    selectTeam(match.params.id);
   }
 
   public componentWillUnmount() {
-    const { clearSelected } = this.props
+    const { clearSelected } = this.props;
 
     // clear selected team state before leaving the page
-    clearSelected()
+    clearSelected();
   }
 
   public render() {
-    const { selected, loading } = this.props
+    const { selected, loading } = this.props;
 
     return (
       <Page>
@@ -78,7 +88,9 @@ class ShowTeamsPage extends React.Component<AllProps> {
                   <TeamInfobox>
                     <TeamInfoboxBlurBackground src={selected.detail.logo_url} />
                     <TeamInfoboxInner>
-                      {selected.detail.logo_url && <TeamLogo src={selected.detail.logo_url} alt={selected.detail.tag} />}
+                      {selected.detail.logo_url && (
+                        <TeamLogo src={selected.detail.logo_url} alt={selected.detail.tag} />
+                      )}
                       <TeamInfoboxHeading>
                         <TeamName>{selected.detail.name}</TeamName>
                       </TeamInfoboxHeading>
@@ -127,7 +139,7 @@ class ShowTeamsPage extends React.Component<AllProps> {
           </Wrapper>
         </Container>
       </Page>
-    )
+    );
   }
 }
 
@@ -137,26 +149,26 @@ class ShowTeamsPage extends React.Component<AllProps> {
 const mapStateToProps = ({ teams }: ApplicationState) => ({
   loading: teams.loading,
   errors: teams.errors,
-  selected: teams.selected
-})
+  selected: teams.selected,
+});
 
 // mapDispatchToProps is especially useful for constraining our actions to the connected component.
 // You can access these via `this.props`.
 const mapDispatchToProps: PropsFromDispatch = {
   selectTeam: selectTeamAction,
-  clearSelected: clearSelectedAction
-}
+  clearSelected: clearSelectedAction,
+};
 
 // Now let's connect our component!
 // With redux v4's improved typings, we can finally omit generics here.
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ShowTeamsPage)
+)(ShowTeamsPage);
 
 const Wrapper = styled('div')`
   position: relative;
-`
+`;
 
 const TableWrapper = styled('div')`
   position: relative;
@@ -164,13 +176,13 @@ const TableWrapper = styled('div')`
   margin: 0 auto;
   margin-top: 3rem;
   min-height: 200px;
-`
+`;
 
 const PlayerDetail = styled('td')`
   display: flex;
   flex-direction: row;
   align-items: center;
-`
+`;
 
 const PlayerIcon = styled('div')`
   position: relative;
@@ -183,7 +195,7 @@ const PlayerIcon = styled('div')`
     height: 100%;
     object-fit: contain;
   }
-`
+`;
 
 const PlayerName = styled('div')`
   flex: 1 1 auto;
@@ -193,4 +205,4 @@ const PlayerName = styled('div')`
   a {
     color: ${props => props.theme.colors.brand};
   }
-`
+`;

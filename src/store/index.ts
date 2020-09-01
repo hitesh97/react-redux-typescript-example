@@ -1,23 +1,24 @@
-import { combineReducers } from 'redux'
-import { all, fork } from 'redux-saga/effects'
-import { connectRouter, RouterState } from 'connected-react-router'
-import { History } from 'history'
+import { combineReducers } from 'redux';
+import { all, fork } from 'redux-saga/effects';
+import { connectRouter, RouterState } from 'connected-react-router';
+import { History } from 'history';
 
-import { LayoutState, layoutReducer } from './layout'
+import { LayoutState, layoutReducer } from './layout';
 
-import heroesSaga from './heroes/sagas'
-import { heroesReducer } from './heroes/reducer'
-import { HeroesState } from './heroes/types'
-import teamsSaga from './teams/sagas'
-import { TeamsState } from './teams/types'
-import { teamsReducer } from './teams/reducer'
+import heroesSaga from './heroes/sagas';
+import { heroesReducer } from './heroes/reducer';
+import { HeroesState } from './heroes/types';
+
+import teamsSaga from './teams/sagas';
+import { TeamsState } from './teams/types';
+import { teamsReducer } from './teams/reducer';
 
 // The top-level state object
 export interface ApplicationState {
-  layout: LayoutState
-  heroes: HeroesState
-  teams: TeamsState
-  router: RouterState
+  layout: LayoutState;
+  heroes: HeroesState;
+  teams: TeamsState;
+  router: RouterState;
 }
 
 // Whenever an action is dispatched, Redux will update each top-level application state property
@@ -28,12 +29,12 @@ export const createRootReducer = (history: History) =>
     layout: layoutReducer,
     heroes: heroesReducer,
     teams: teamsReducer,
-    router: connectRouter(history)
-  })
+    router: connectRouter(history),
+  });
 
 // Here we use `redux-saga` to trigger actions asynchronously. `redux-saga` uses something called a
 // "generator function", which you can read about here:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
 export function* rootSaga() {
-  yield all([fork(heroesSaga), fork(teamsSaga)])
+  yield all([fork(heroesSaga), fork(teamsSaga)]);
 }

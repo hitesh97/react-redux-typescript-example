@@ -1,11 +1,11 @@
-import * as React from 'react'
-import { NavLink } from 'react-router-dom'
-import styled from '../../utils/styled'
-import LayoutContainer from '../../containers/LayoutContainer'
-import Container from './Container'
+import * as React from 'react';
+import { NavLink } from 'react-router-dom';
+import styled from '../../utils/styled';
+import LayoutContainer from '../../containers/LayoutContainer';
+import Container from './Container';
 
 interface HeaderProps {
-  title: string
+  title: string;
 }
 
 const Wrapper = styled('header')`
@@ -13,7 +13,7 @@ const Wrapper = styled('header')`
   background-color: ${props => props.theme.colors.brand};
   color: ${props => props.theme.colors.white};
   font-family: ${props => props.theme.fonts.headings};
-`
+`;
 
 const HeaderInner = styled(Container)`
   display: flex;
@@ -24,11 +24,11 @@ const HeaderInner = styled(Container)`
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
     flex-direction: row;
   }
-`
+`;
 
 const HeaderLeft = styled('div')`
   padding-right: 1rem;
-`
+`;
 
 const HeaderNav = styled('nav')`
   flex: 1 1 auto;
@@ -37,7 +37,7 @@ const HeaderNav = styled('nav')`
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
     margin: 0;
   }
-`
+`;
 
 const HeaderNavLink = styled(NavLink)`
   margin: 0 1rem;
@@ -45,20 +45,20 @@ const HeaderNavLink = styled(NavLink)`
   &.is-active {
     text-decoration: underline;
   }
-`
+`;
 
 const HeaderRight = styled('div')`
   padding-left: 1rem;
-`
+`;
 
 const Title = styled('h2')`
   margin: 0;
   font-weight: 500;
-`
+`;
 
 const CurrentTheme = styled('span')`
   margin-right: 1rem;
-`
+`;
 
 const ThemeSwitcherButton = styled('button')`
   display: inline-block;
@@ -78,7 +78,7 @@ const ThemeSwitcherButton = styled('button')`
     background-color: transparent;
     color: ${props => props.theme.colors.white};
   }
-`
+`;
 
 const Header: React.SFC<HeaderProps> = ({ title }) => (
   <Wrapper>
@@ -102,13 +102,15 @@ const Header: React.SFC<HeaderProps> = ({ title }) => (
           {({ theme, setTheme }) => (
             <>
               <CurrentTheme>Current theme: {theme}</CurrentTheme>
-              <ThemeSwitcherButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>Switch theme</ThemeSwitcherButton>
+              <ThemeSwitcherButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+                Switch theme
+              </ThemeSwitcherButton>
             </>
           )}
         </LayoutContainer>
       </HeaderRight>
     </HeaderInner>
   </Wrapper>
-)
+);
 
-export default Header
+export default Header;

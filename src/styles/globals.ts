@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/core';
 
 const globals = css`
   body {
@@ -36,6 +36,6 @@ const globals = css`
     font-size: 85%;
     border-collapse: collapse;
   }
-`
+`;
 
-export default globals
+export default globals;

@@ -1,6 +1,6 @@
-import { darken, transparentize } from 'polished'
+import { darken, transparentize } from 'polished';
 
-import styled from '../../utils/styled'
+import styled from '../../utils/styled';
 
 export const TeamInfobox = styled('div')`
   position: relative;
@@ -8,7 +8,7 @@ export const TeamInfobox = styled('div')`
   overflow: hidden;
   border-radius: 8px;
   color: ${props => darken(0.25, props.theme.colors.white)};
-`
+`;
 
 export const TeamInfoboxBlurBackground = styled('img')`
   position: absolute;
@@ -21,7 +21,7 @@ export const TeamInfoboxBlurBackground = styled('img')`
   opacity: 0.35;
   background-repeat: no-repeat;
   z-index: 1;
-`
+`;
 
 export const TeamInfoboxInner = styled('div')`
   display: flex;
@@ -35,7 +35,7 @@ export const TeamInfoboxInner = styled('div')`
   @media (min-width: ${props => props.theme.breakpoints.lg}) {
     flex-direction: row;
   }
-`
+`;
 
 export const TeamLogo = styled('img')`
   display: block;
@@ -51,7 +51,7 @@ export const TeamLogo = styled('img')`
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.3);
   border-image: initial;
-`
+`;
 
 export const TeamInfoboxHeading = styled('div')`
   flex: 1 1 100%;
@@ -62,10 +62,10 @@ export const TeamInfoboxHeading = styled('div')`
     margin: 0 1.5rem;
     text-align: left;
   }
-`
+`;
 
 export const TeamName = styled('h1')`
   margin: 0;
   color: ${props => props.theme.colors.white};
   font-weight: 500;
-`
+`;
